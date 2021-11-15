@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="fisglobal" class="com.spring.Entity.FISGlobal">
+		<property name="organizationName" value="FISGlobal"/>
+	</bean>
+	<bean id="infosys" class="com.spring.Entity.Infosys">
+		<property name="organizationName" value="Infosys"/>
+	</bean>
+	<bean id="organization" class="com.spring.core.Organization" >
+		<constructor-arg ref="infosys"></constructor-arg>
+		<property name="employeeName" value="Naren"/>
+	</bean>
+	<bean id="organization-custom-1"
+		class="com.spring.core.Organization" factory-method="getInstance">
+		<constructor-arg ref="infosys"></constructor-arg>
+		<property name="employeeName" value="Naren"/>
+	</bean>
+	<bean id="organization-custom-2"
+		class="com.spring.core.Organization" factory-method="createInstance" factory-bean="organizationFactory">
+		<constructor-arg ref="infosys"></constructor-arg>
+		<property name="employeeName" value="Naren"/>
+	</bean>
+	<bean id="organizationFactory" class="com.spring.core.OrganizationFactory" />
+	<bean id="businessService" class="com.spring.Entity.FISGlobal" >
+		<property name="organizationName" value="FISGlobal"/>
+	</bean>
+	<bean id="organizationAnnotation" class="com.spring.core.OrganizationAnnotation">
+		<property name="employeeName" value="Naren"/>
+	</bean>
+	
+	<context:annotation-config></context:annotation-config>
+</beans>
