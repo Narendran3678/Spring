@@ -20,6 +20,7 @@ import com.springboot.customException.CourseNotFoundException;
 import com.springboot.entity.Courses;
 
 @RestController
+//@RequestMapping("/api")
 public class HomeRestController 
 {
 	
